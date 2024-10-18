@@ -9,16 +9,17 @@ from langchain.chains.sequential import SequentialChain  # Updated import
 from langchain.memory import ConversationBufferMemory
 from langchain_community.utilities import WikipediaAPIWrapper
 
-# Attempt to import API_KEY from api_key.py; fallback to environment variable
-try:
-    from api_key import API_KEY
-except ImportError:
-    API_KEY = os.getenv("GROQ_API_KEY")
-
-if not API_KEY:
-    API_KEY = getpass.getpass("Enter your Groq API key: ")
+# Fetch API_KEY from Streamlit secrets or local api_key.py
+if 'GROQ_API_KEY' in st.secrets:
+    API_KEY = st.secrets["GROQ_API_KEY"]
+else:
+    try:
+        from api_key import API_KEY
+    except ImportError:
+        API_KEY = os.getenv("GROQ_API_KEY", getpass.getpass("Enter your Groq API key: "))
 
 os.environ['GROQ_API_KEY'] = API_KEY
+
 # App Framework
 st.title("LangChain YT Creator")
 prompt = st.text_input("Enter your prompt here:")
