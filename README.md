@@ -8,6 +8,8 @@ This Streamlit application uses LangChain to generate a YouTube video title and 
 - **Generate Scripts**: Produce detailed video scripts based on the provided topic.
 - **User-Friendly Interface**: Simple and intuitive interface powered by Streamlit.
 
+## [Demo](https://yt-content-writer-kc5waz5jpyazjvcxame7c6.streamlit.app/)
+
 ## Installation
 
 1. Clone the repository:
